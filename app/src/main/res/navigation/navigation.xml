@@ -3,23 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/splashScreenFragment">
     <fragment
-        android:id="@+id/firstFragment"
-        android:name="com.example.premierleaguefixtures.FirstFragment"
-        android:label="fragment_first"
-        tools:layout="@layout/fragment_first" >
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.premierleaguefixtures.screens.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_firstFragment_to_secondFragment"
-            app:destination="@id/secondFragment" />
+            android:id="@+id/action_splashScreenFragment_to_baseFragment"
+            app:destination="@id/baseFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.premierleaguefixtures.SecondFragment"
-        android:label="fragment_second"
-        tools:layout="@layout/fragment_second" >
-        <action
-            android:id="@+id/action_secondFragment_to_firstFragment"
-            app:destination="@id/firstFragment" />
-    </fragment>
+        android:id="@+id/baseFragment"
+        android:name="com.example.premierleaguefixtures.screens.BaseFragment"
+        android:label="fragment_base"
+        tools:layout="@layout/fragment_base" />
 </navigation>

@@ -6,4 +6,7 @@
     <string name="go_to_first_fragment">Перейти на первый фрагмент</string>
     <string name="welcome_to_the_second_fragment">Welcome to the second Fragment!</string>
     <string name="welcome_to_the_first_fragment">Welcome to the first Fragment!</string>
+    <string name="splash_screen_title">PREMIER LEAGUE FIXTURES</string>
+    <string name="main_background">main_background</string>
+
 </resources>
