@@ -8,5 +8,8 @@
     <string name="welcome_to_the_first_fragment">Welcome to the first Fragment!</string>
     <string name="splash_screen_title">PREMIER LEAGUE FIXTURES</string>
     <string name="main_background">main_background</string>
+    <string name="tabLayout">tabLayout</string>
+    <string name="topScreenView">top_screen_view</string>
+    <string name="bottomScreenView">bottom_screen_view</string>
 
 </resources>

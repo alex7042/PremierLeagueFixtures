@@ -6,18 +6,16 @@
     app:startDestination="@id/splashScreenFragment">
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.premierleaguefixtures.screens.SplashScreenFragment"
+        android:name="com.example.premierleaguefixtures.screens.splash_screen.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_splashScreenFragment_to_baseFragment"
-            app:destination="@id/baseFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/navigation" />
+            android:id="@+id/action_splashScreenFragment_to_fixturesFragment"
+            app:destination="@id/fixturesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/baseFragment"
-        android:name="com.example.premierleaguefixtures.screens.BaseFragment"
-        android:label="fragment_base"
-        tools:layout="@layout/fragment_base" />
+        android:id="@+id/fixturesFragment"
+        android:name="com.example.premierleaguefixtures.screens.fixtures_screen.FixturesFragment"
+        android:label="fragment_fixtures"
+        tools:layout="@layout/fragment_fixtures" />
 </navigation>
