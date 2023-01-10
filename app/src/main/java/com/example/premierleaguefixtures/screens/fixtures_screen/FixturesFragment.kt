@@ -4,19 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
 import com.example.premierleaguefixtures.databinding.FragmentFixturesBinding
-import kotlinx.coroutines.*
+import com.example.premierleaguefixtures.utilities.Resource
 
 
 class FixturesFragment : Fragment() {
 
     private lateinit var binding: FragmentFixturesBinding
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: FixturesAdapter
+    private var fixturesAdapter: FixturesAdapter = FixturesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,15 +30,13 @@ class FixturesFragment : Fragment() {
     }
 
     private fun initialization() {
-        recyclerView = binding.firstFragmentRecyclerView
-        adapter = FixturesAdapter()
-        recyclerView.adapter = adapter
-        val viewModel = ViewModelProvider(this)[FixturesFragmentViewModel::class.java]
-        viewModel.getFixturesData()
-        viewModel.fixturesDataList.observe(viewLifecycleOwner) { list ->
-            list.body()?.let { adapter.setFixturesList(it) }
+        binding.firstFragmentRecyclerView.adapter = fixturesAdapter
+        val viewModel = ViewModelProvider(this, FixturesViewModelFactory())[FixturesFragmentViewModel::class.java]
+        viewModel.fixturesLiveData.observe(viewLifecycleOwner){
+            fixturesAdapter.submitList(it.data)
+            binding.progress.isVisible = it is Resource.Loading<*> && it.data.isNullOrEmpty()
+            binding.error.isVisible = it is Resource.Error<*> && it.data.isNullOrEmpty()
+            binding.error.text = it.error?.localizedMessage
         }
     }
-
-
 }

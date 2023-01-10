@@ -40,7 +40,7 @@ class SplashScreenFragment : Fragment() {
         }
     }
 
-    // Animation
+    // StartAnimation
 
     private fun topSplashScreenViewAnimation() {
         val topView = binding.topScreenView

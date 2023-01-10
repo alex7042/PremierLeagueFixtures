@@ -1,55 +1,29 @@
 package com.example.premierleaguefixtures.screens.fixtures_screen
 
-import android.annotation.SuppressLint
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.example.premierleaguefixtures.R
-import com.example.premierleaguefixtures.model.FixturesDataItem
-import java.util.*
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import com.example.premierleaguefixtures.data.model.Fixtures
 
-class FixturesAdapter: RecyclerView.Adapter<FixturesAdapter.FixturesViewHolder>() {
-
-    private var fixturesList = emptyList<FixturesDataItem>()
-
-    inner class FixturesViewHolder(view:View):RecyclerView.ViewHolder(view) {
-        val matchNumber: TextView = view.findViewById(R.id.matchNumber)
-        val roundNumber: TextView= view.findViewById(R.id.roundNumber)
-        val dateUtc: TextView= view.findViewById(R.id.dateUtc)
-        val location: TextView= view.findViewById(R.id.location)
-        val homeTeam: TextView= view.findViewById(R.id.homeTeam)
-        val awayTeam: TextView= view.findViewById(R.id.awayTeam)
-//        val group: TextView= view.findViewById(R.id.group) // смысла в нем нет, во всех матчах это значение = null
-        val homeTeamScore: TextView= view.findViewById(R.id.homeTeamScore)
-        val awayTeamScore: TextView= view.findViewById(R.id.awayTeamScore)
-    }
+class FixturesAdapter: ListAdapter<Fixtures, FixturesViewHolder>(createDifUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FixturesViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_fixture_item, parent, false)
-        return FixturesViewHolder(itemView)
+        return FixturesViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: FixturesViewHolder, position: Int) {
-        holder.matchNumber.text = fixturesList[position].MatchNumber.toString()
-        holder.roundNumber.text = fixturesList[position].RoundNumber.toString()
-        holder.dateUtc.text = fixturesList[position].DateUtc
-        holder.location.text = fixturesList[position].Location
-        holder.homeTeam.text = fixturesList[position].HomeTeam
-        holder.awayTeam.text = fixturesList[position].AwayTeam
-//        holder.group.text = fixturesList[position].Group.toString()
-        holder.homeTeamScore.text = fixturesList[position].HomeTeamScore.toString()
-        holder.awayTeamScore.text = fixturesList[position].AwayTeamScore.toString()
+        holder.bind(getItem(position))
     }
+}
 
-    override fun getItemCount(): Int = fixturesList.size
+fun createDifUtil(): DiffUtil.ItemCallback<Fixtures> {
+    return object : DiffUtil.ItemCallback<Fixtures>() {
+        override fun areItemsTheSame(oldItem: Fixtures, newItem: Fixtures): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setFixturesList(list: List<FixturesDataItem>){
-        fixturesList = list
-        notifyDataSetChanged()
-
+        override fun areContentsTheSame(oldItem: Fixtures, newItem: Fixtures): Boolean {
+            return oldItem == newItem
+        }
     }
 }
