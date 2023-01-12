@@ -6,15 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.premierleaguefixtures.databinding.FragmentFixturesBinding
 import com.example.premierleaguefixtures.utilities.Resource
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class FixturesFragment : Fragment() {
 
     private lateinit var binding: FragmentFixturesBinding
     private var fixturesAdapter: FixturesAdapter = FixturesAdapter()
+    private val viewModel by viewModel<FixturesFragmentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +32,6 @@ class FixturesFragment : Fragment() {
 
     private fun initialization() {
         binding.firstFragmentRecyclerView.adapter = fixturesAdapter
-        val viewModel = ViewModelProvider(this, FixturesViewModelFactory())[FixturesFragmentViewModel::class.java]
         viewModel.fixturesLiveData.observe(viewLifecycleOwner){
             fixturesAdapter.submitList(it.data)
             binding.progress.isVisible = it is Resource.Loading<*> && it.data.isNullOrEmpty()

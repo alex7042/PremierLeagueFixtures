@@ -1,6 +1,6 @@
 package com.example.premierleaguefixtures.utilities
 
-import com.example.premierleaguefixtures.MainActivity
+import com.example.premierleaguefixtures.screens.MainActivity
 
 lateinit var APP_ACTIVITY: MainActivity
 const val API_KEY = "feed/json/epl-2021"

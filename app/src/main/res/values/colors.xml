@@ -10,5 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_background">#393939</color>
     <color name="transparent">#00000000</color>
+    <color name="rv_item_title_background_color">#0FFFFFFF</color>
 
 </resources>

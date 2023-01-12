@@ -11,19 +11,9 @@ abstract class FixturesDatabase : RoomDatabase() {
     abstract fun fixturesDao(): FixturesDao
 
     companion object {
-        private var INSTANCE: FixturesDatabase? = null
-        fun createDatabase(context: Context): Boolean {
-            if (INSTANCE == null) {
-                synchronized(this) {
-                    INSTANCE =
-                        Room.databaseBuilder(context, FixturesDatabase::class.java, "fixtures_db")
-                            .build()
-                    return true
-                }
-            }
-            return false
+        fun createDatabase(context: Context): FixturesDatabase {
+            return Room.databaseBuilder(context, FixturesDatabase::class.java, "fixtures_db")
+                .build()
         }
-
-        fun getDatabase(): FixturesDatabase? = INSTANCE
     }
 }

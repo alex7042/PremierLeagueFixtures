@@ -1,7 +1,5 @@
 package com.example.premierleaguefixtures.screens.fixtures_screen
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.premierleaguefixtures.data.Repository
