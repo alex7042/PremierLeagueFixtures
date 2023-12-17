@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashScreenFragment">
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.premierleaguefixtures.screens.splash_screen.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_fixturesFragment"
+            app:destination="@id/fixturesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fixturesFragment"
+        android:name="com.example.premierleaguefixtures.screens.fixtures_screen.FixturesFragment"
+        android:label="fragment_fixtures"
+        tools:layout="@layout/fragment_fixtures" />
+</navigation>
